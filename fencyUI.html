@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="CSS/StyleSheet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-app="hwApp" ng-controller="hwCtrl">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Property.html">Houses</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="col-sm-12 price-form">
+            <div class="row price-form-row" ng-if="!addListing">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Min Price</span>
+                        <select name="minPrice" id="minPrice" ng-model="priceInfo.min" class="form-control">
+                            <option value="1000000">$1,000,000</option>
+                            <option value="2000000">$2,000,000</option>
+                            <option value="3000000">$3,000,000</option>
+                            <option value="4000000">$4,000,000</option>
+                            <option value="5000000">$5,000,000</option>
+                            <option value="6000000">$6,000,000</option>
+                            <option value="7000000">$7,000,000</option>
+                            <option value="8000000">$8,000,000</option>
+                            <option value="9000000">$9,000,000</option>
+                            <option value="10000000">$10,000,000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Max Price</span>
+                        <select name="maxPrice" id="maxPrice" ng-model="priceInfo.max" class="form-control">
+                            <option value="1000000">$1,000,000</option>
+                            <option value="2000000">$2,000,000</option>
+                            <option value="3000000">$3,000,000</option>
+                            <option value="4000000">$4,000,000</option>
+                            <option value="5000000">$5,000,000</option>
+                            <option value="6000000">$6,000,000</option>
+                            <option value="7000000">$7,000,000</option>
+                            <option value="8000000">$8,000,000</option>
+                            <option value="9000000">$9,000,000</option>
+                            <option value="10000000">$10,000,000</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" ng-click="addListing = !addListing" ng-show="!addListing">
+                Add Listing
+            </button>
+
+            <button class="btn btn-danger" ng-click="addListing = !addListing" ng-show="addListing">
+                Close
+            </button>
+
+            <div class="listing-form" ng-if="addListing">
+                <h3>Add a listing</h3>
+                <div class="row listing-form row">
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Address</span>
+                            <input type="text" placeholder="Enter the Address" class="form-control"
+                                   ng-model="newListing.address" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Price</span>
+                            <input type="text" placeholder="Enter the Price" class="form-control"
+                                   ng-model="newListing.price" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Property Type</span>
+                            <select type="select" name="propertyType" id="propertyType" class="form-control"
+                                    ng-model="newListing.type">
+                                <option value="House">House</option>
+                                <option value="Condo">Condo</option>
+                                <option value="Duplex">Duplex</option>
+                                <option value="Apartment">Apartment</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row listing-form-row">
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Description</span>
+                            <textarea type="text" placeholder="Enter Description" class="form-control"
+                                   ng-model="newListing.description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Beds</span>
+                                <input type="text" placeholder="Bedrooms" class="form-control"
+                                       ng-model="newListing.details.bedroom" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Bath</span>
+                                <input type="text" placeholder="Bathrooms" class="form-control"
+                                       ng-model="newListing.details.bathroom" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">SqFt</span>
+                                <input type="text" placeholder="Square Feet" class="form-control"
+                                       ng-model="newListing.details.area" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary listing-button" ng-click="addData(newListing)"
+                        ng-show="addListing">Add</button>
+                <pre>{{newListing | json}}</pre>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-sm-4" ng-repeat="house in data | propFilter:priceInfo">
+                <div class="thumbnail">
+                    <img ng-src="res/{{house.image}}.jpg" alt="" />
+                    <div class="caption">
+                        <div ng-hide="showDetails === true">
+                            <h3>
+                                <i class="glyphicon glyphicon-tag"></i>
+                                {{house.price | currency}}
+                            </h3>
+                            <h4>
+                                <i class="glyphicon glyphicon-home"></i>
+                                {{house.address}}
+                                <span class="label label-primary label-sm">
+                                    {{house.type}}
+                                </span>
+                            </h4>
+                        </div>
+
+                        <button class="btn btn-xs btn-success"
+                                ng-hide="showDetails === true"
+                                ng-click="showDetails = !showDetails">
+                            Details
+                        </button>
+
+                        <button class="btn btn-xs btn-danger"
+                                ng-show="showDetails === true"
+                                ng-click="showDetails = !showDetails">
+                            Close
+                        </button>
+
+                        <div class="details" ng-show="showDetails === true">
+                            <h4>
+                                <span class="label label-primary">Beds: {{house.details.bedroom}}</span>
+                                <span class="label label-primary">Bath: {{house.details.bathroom}}</span>
+                                <span class="label label-primary">SqFt: {{house.details.area}}</span>
+                            </h4>
+                            <p>{{house.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Content/hwApp.js"></script>
+    <script src="Content/hwController.js"></script>
+    <script src="Content/hwFactory.js"></script>
+    <script src="Content/propFilter.js"></script>
+</body>
+</html>

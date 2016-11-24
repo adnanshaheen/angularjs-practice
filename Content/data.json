@@ -1,0 +1,74 @@
+﻿[
+  {
+    "type": "Condo",
+    "price": 2200000,
+    "address": "123 grove street",
+    "description": "Excellent place, really nice view",
+    "details": {
+      "bedroom": 2,
+      "bathroom": 1,
+      "area": 964
+    },
+    "image": "image1"
+  },
+  {
+    "type": "House",
+    "price": 4500000,
+    "address": "123 wilson street",
+    "description": "nice home, really nice view",
+    "details": {
+      "bedroom": 4,
+      "bathroom": 4,
+      "area": 1964
+    },
+    "image": "image2"
+  },
+  {
+    "type": "Duplex",
+    "price": 1000000,
+    "address": "523 park street",
+    "description": "nice view and luxury",
+    "details": {
+      "bedroom": 2,
+      "bathroom": 1,
+      "area": 2964
+    },
+    "image": "image3"
+  },
+  {
+    "type": "Condo",
+    "price": 2300000,
+    "address": "143 grove street",
+    "description": "Excellent place, really nice view",
+    "details": {
+      "bedroom": 2,
+      "bathroom": 1,
+      "area": 964
+    },
+    "image": "image4"
+  },
+  {
+    "type": "House",
+    "price": 4600000,
+    "address": "223 wilson street",
+    "description": "nice home, really nice view",
+    "details": {
+      "bedroom": 4,
+      "bathroom": 4,
+      "area": 1964
+    },
+    "image": "image5"
+  },
+  {
+    "type": "Duplex",
+    "price": 1500000,
+    "address": "526 park street",
+    "description": "nice view and luxury",
+    "details": {
+      "bedroom": 2,
+      "bathroom": 1,
+      "area": 2964
+    },
+    "image": "image6"
+  }
+]

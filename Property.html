@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-app="hwApp" ng-controller="hwCtrl">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="fencyUI.html">Fency UI</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="col-sm-4" ng-repeat="house in data">
+            <div class="thumbnail">
+                <img ng-src="res/{{house.image}}.jpg" alt="" />
+                <div class="caption">
+                    <h3>{{house.address}}</h3>
+                    <p><strong>Type:</strong>{{house.type}}</p>
+                    <p><strong>Description:</strong>{{house.description}}</p>
+                    <p><strong>Price:</strong>{{house.price | currency}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Content/hwApp.js"></script>
+    <script src="Content/hwController.js"></script>
+    <script src="Content/hwFactory.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+	    <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="CSS/StyleSheet.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    </head>
+    <body ng-app="hwApp" ng-controller="hwCtrl">
+        <button ng-click="sayHello(); showMessage = true">Say Hello</button>
+        <button ng-click="showMessage = false">Hide Hello</button>
+        <button ng-click="showMessage = !showMessage">Toggle Hello</button>
+        <a ng-href="Property.html">Property Dealer</a>
+        <h1 ng-show="showMessage == true">{{ hello + ' How are you' }}</h1>
+        <div class="well" ng-repeat="t in data">
+            <h3>{{ t.address }}</h3>
+            <p><strong>Type: {{t.type}}</strong></p>
+            <p><strong>Description: {{t.description}}</strong></p>
+            <p><strong>Price: {{t.price | currency}}</strong></p>
+        </div>
+
+        <div ng-init="quantity=2;price=5" class="price-form">
+
+            Quantity: <input type="number" ng-model="quantity">
+            Costs:    <input type="number" ng-model="price">
+        </div>
+        <div><p>Total in dollar: {{ quantity * price }}</p></div>
+
+        <div ng-controller="hwCtrl">
+            <label>Enter name: <input type="text" ng-model="name"></label><br>
+            Hello <span ng-bind="name"></span>!
+        </div>
+
+        <div class="well">
+            <p>
+                <ul>
+                    <li ng-repeat="c in countries | orderBy:'country' | filter: 'e'">
+                        {{c.name + ', ' + c.country | hwFilter:true}}
+                    </li>
+                </ul>
+            </p>
+        </div>
+
+        <script src="Content/hwApp.js"></script>
+        <script src="Content/hwController.js"></script>
+        <script src="Content/hwFactory.js"></script>
+        <script src="Content/hwFilter.js"></script>
+    </body>
+</html>
